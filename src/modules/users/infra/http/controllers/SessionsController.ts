@@ -13,8 +13,8 @@ export default class SessionsController {
       password,
     });
 
-    delete (await user).password;
+    const userWithoutPassword = { ...user, password: '********' };
 
-    return response.json({ user, token });
+    return response.json({ userWithoutPassword, token });
   }
 }

@@ -14,8 +14,6 @@ export default class UsersController {
       password,
     });
 
-    delete (await user).password;
-
-    return response.json(user);
+    return response.json({ ...user, password: '********' });
   }
 }
