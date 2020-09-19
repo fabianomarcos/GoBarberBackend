@@ -4,7 +4,7 @@ import { verify } from 'jsonwebtoken';
 import authConfig from '../../../../../config/auth';
 import AppError from '../../../../../shared/errors/AppError';
 
-interface TokenPayload {
+interface ITokenPayload {
   iat: number;
   exp: number;
   sub: string;
@@ -13,11 +13,11 @@ interface TokenPayload {
 export default function ensureAuthenticated(
   request: Request,
   response: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   const authHeader = request.headers.authorization;
 
-  if(!authHeader) {
+  if (!authHeader) {
     throw new AppError('Token inválido', 401);
   }
 
@@ -26,11 +26,11 @@ export default function ensureAuthenticated(
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    const { sub } = decoded as TokenPayload;
+    const { sub } = decoded as ITokenPayload;
 
     request.user = {
-      id: sub
-    }
+      id: sub,
+    };
 
     return next();
   } catch {

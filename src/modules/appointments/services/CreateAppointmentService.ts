@@ -7,14 +7,14 @@ import Appointment from '../infra/typeorm/entities/Appointment';
 import { IAppointmentsRepository } from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
-  provider_id: any;
+  provider_id: string;
   date: Date;
 }
 
 @injectable()
 class CreateAppointmentService {
   constructor(
-    @inject('AppointmentRepository')
+    @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
   ) {}
 
