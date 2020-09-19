@@ -15,8 +15,8 @@ describe('UpdateUserAvatar', () => {
     );
 
     const user = await fakeUsersRepository.create({
-      name: 'Fabiano Bill',
-      email: 'Fabiano@bill.com',
+      name: 'Fabiano BIll Bill',
+      email: 'FabianTwo@bill.com',
       password: '123456',
     });
 
@@ -25,7 +25,7 @@ describe('UpdateUserAvatar', () => {
       avatarFileName: 'avatar.png',
     });
 
-    expect(user.avatar).toBe('avatar.jpg');
+    expect(user.avatar).toBe('avatar.png');
   });
 
   it('should not be able to update avatar from non existing user', async () => {
@@ -58,7 +58,7 @@ describe('UpdateUserAvatar', () => {
 
     const user = await fakeUsersRepository.create({
       name: 'Fabiano Bill',
-      email: 'Fabiano@bill.com',
+      email: 'FabianoMrc@bill.com',
       password: '123456',
     });
 
@@ -72,7 +72,7 @@ describe('UpdateUserAvatar', () => {
       avatarFileName: 'avatar2.png',
     });
 
-    expect(deleteFile).toHaveBeenCalledWith('avatar.jpg');
-    expect(user.avatar).toBe('avatar2.jpg');
+    expect(deleteFile).toHaveBeenCalledWith('avatar.png');
+    expect(user.avatar).toBe('avatar2.png');
   });
 });

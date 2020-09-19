@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+
 import AuthenticateUserService from './AuthenticateUserService';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import CreateUserService from './CreateUserService';
@@ -13,6 +14,7 @@ describe('AuthenticateUser', () => {
       fakeUsersRepository,
       fakeHashProvider,
     );
+
     const authenticateUser = new AuthenticateUserService(
       fakeUsersRepository,
       fakeHashProvider,
@@ -50,7 +52,7 @@ describe('AuthenticateUser', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should not be able to authenticate with ', async () => {
+  it('should not be able to authenticate with wrong password', async () => {
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeHashProvider = new FakeHashProvider();
 
@@ -58,6 +60,7 @@ describe('AuthenticateUser', () => {
       fakeUsersRepository,
       fakeHashProvider,
     );
+
     const authenticateUser = new AuthenticateUserService(
       fakeUsersRepository,
       fakeHashProvider,
@@ -65,14 +68,14 @@ describe('AuthenticateUser', () => {
 
     await createUser.execute({
       name: 'Developer Bill',
-      email: 'fabiano@email.com',
+      email: 'bill@email.com',
       password: '123456',
     });
 
     expect(
       authenticateUser.execute({
-        email: 'fabiano@email.com',
-        password: '123456',
+        email: 'bill@email.com',
+        password: 'wrong-password',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
