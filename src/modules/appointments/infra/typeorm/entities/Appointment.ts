@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  JoinColumn
+  JoinColumn,
 } from 'typeorm';
 
 import User from '../../../../users/infra/typeorm/entities/User';
@@ -17,8 +17,9 @@ class Appointment {
 
   @Column()
   provider_id: string;
+
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'provider_id'})
+  @JoinColumn({ name: 'provider_id' })
   provider: User;
 
   @Column('timestamp with time zone')
