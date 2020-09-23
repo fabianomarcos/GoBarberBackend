@@ -24,10 +24,14 @@ class SendForgotPasswordEmailService {
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
-    const user = await this.usersRepository.findByEmail(email);
+    const user = await this.usersRepository.findByEmail(
+      'fabianoBill@gmail.com',
+    );
+
+    console.log(user, email); // está retornando undefined, tem de arrumar
 
     if (!user) {
-      throw new AppError('Usuário não existe.');
+      throw new AppError('Usuário inexistente.');
     }
 
     const { token } = await this.userTokensRepository.generate(user.id);
