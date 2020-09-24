@@ -56,7 +56,7 @@ class UpdateProfileService {
         user.password,
       );
 
-      if (checkOldPassword) {
+      if (!checkOldPassword) {
         throw new AppError('A senha atual não confere.');
       }
     }
