@@ -10,18 +10,18 @@ let fakeHashProvider: FakeHashProvider;
 let createUser: CreateUserService;
 let authenticateUser: AuthenticateUserService;
 
-beforeEach(() => {
-  fakeUsersRepository = new FakeUsersRepository();
-  fakeHashProvider = new FakeHashProvider();
-
-  createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider);
-  authenticateUser = new AuthenticateUserService(
-    fakeUsersRepository,
-    fakeHashProvider,
-  );
-});
-
 describe('AuthenticateUser', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeHashProvider = new FakeHashProvider();
+
+    createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider);
+    authenticateUser = new AuthenticateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+  });
+
   it('should be able to authenticate', async () => {
     const user = await createUser.execute({
       name: 'Developer Bill',

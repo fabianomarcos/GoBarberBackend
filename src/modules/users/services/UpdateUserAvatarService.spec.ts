@@ -8,17 +8,17 @@ let fakeUsersRepository: FakeUsersRepository;
 let fakeStorageProvider: FakeStorageProvider;
 let updateUserAvatar: UpdateUserAvatarService;
 
-beforeEach(() => {
-  fakeUsersRepository = new FakeUsersRepository();
-  fakeStorageProvider = new FakeStorageProvider();
-
-  updateUserAvatar = new UpdateUserAvatarService(
-    fakeUsersRepository,
-    fakeStorageProvider,
-  );
-});
-
 describe('UpdateUserAvatar', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeStorageProvider = new FakeStorageProvider();
+
+    updateUserAvatar = new UpdateUserAvatarService(
+      fakeUsersRepository,
+      fakeStorageProvider,
+    );
+  });
+
   it('should be able to change a new avatar', async () => {
     const user = await fakeUsersRepository.create({
       name: 'Fabiano BIll Bill',
