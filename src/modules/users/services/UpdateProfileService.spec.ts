@@ -83,7 +83,7 @@ describe('UpdateProfile', () => {
       password: '123123',
     });
 
-    expect(updatedUser?.password).toBe('123123');
+    expect(updatedUser.password).toBe('123123');
   });
 
   it('should not be able to update the password without old password', async () => {
