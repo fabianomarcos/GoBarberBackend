@@ -8,13 +8,13 @@ import routes from './routes';
 import uploadConfig from '../../../config/upload';
 import AppError from '../../errors/AppError';
 
-import '../../typeorm';
+import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
 
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.tmpFolder));
 app.use(cors());
 app.use(routes);
 
@@ -26,14 +26,17 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     });
   }
 
+  // eslint-disable-next-line no-console
   console.log(err);
 
   return response.status(500).json({
     status: 'error',
+    error: err,
     message: 'Internal server error',
   });
 });
 
 app.listen(3333, () => {
+  // eslint-disable-next-line no-console
   console.log('✔ Server started on port 3333.');
 });
