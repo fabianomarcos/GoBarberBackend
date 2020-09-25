@@ -7,7 +7,7 @@ export default class UserAvatarController {
     const updateUserAvatar = container.resolve(UpdateUserAvatarService);
 
     const user = updateUserAvatar.execute({
-      user_id: request.user.id,
+      user_id: request.body.user.id, // conferir estava sem o body
       avatarFileName: request.file.filename,
     });
 
