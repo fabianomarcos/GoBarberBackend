@@ -28,11 +28,11 @@ describe('SendForgotPasswordEmail', () => {
 
     await fakeUsersRepository.create({
       name: 'Fabiano Bill',
-      email: 'fabiano@bill.com',
+      email: 'teste@gmail.com',
       password: '123456',
     });
 
-    await sendForgotPasswordEmail.execute({ email: 'fabiano@bill.com' });
+    await sendForgotPasswordEmail.execute({ email: 'testeforgot@gmail.com' });
 
     expect(sendMail).toHaveBeenCalled();
   });
@@ -50,11 +50,11 @@ describe('SendForgotPasswordEmail', () => {
 
     const user = await fakeUsersRepository.create({
       name: 'Fabiano Bill',
-      email: 'fabiano@bill.com',
+      email: 'teste@gmail.com',
       password: '123456',
     });
 
-    await sendForgotPasswordEmail.execute({ email: 'fabiano@bill.com' });
+    await sendForgotPasswordEmail.execute({ email: 'testeforgot@gmail.com' });
 
     expect(generateToken).toHaveBeenCalledWith(user.id);
   });
