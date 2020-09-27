@@ -1,3 +1,4 @@
+import UserMap from '@modules/appointments/automapper/UserMap';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -14,6 +15,8 @@ export default class UsersController {
       password,
     });
 
-    return response.json({ ...user, password: '********' });
+    const userMapped = UserMap.toDTO(user);
+
+    return response.json(userMapped);
   }
 }
