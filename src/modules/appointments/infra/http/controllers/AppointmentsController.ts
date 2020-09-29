@@ -5,7 +5,7 @@ import { container } from 'tsyringe';
 
 export default class AppointmentsController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const user_id = request.body.user.id;
+    const user_id = request.user.id;
     const { provider_id, date } = request.body;
 
     const parsedDate = parseISO(date);
