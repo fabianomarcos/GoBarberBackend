@@ -9,3 +9,6 @@ tmp/*
 !tmp/.gitkeep
 coverage/
 .env
+
+yarn.lock
+yarn-error.log
