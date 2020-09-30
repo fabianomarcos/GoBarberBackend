@@ -1,4 +1,4 @@
-import { getMonth } from 'date-fns';
+import { getMonth, getYear } from 'date-fns';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import ListProviderMonthAvailabilityService from './ListProviderMonthAvailabilityService';
 
@@ -6,6 +6,7 @@ let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let listProviderMonthAvailability: ListProviderMonthAvailabilityService;
 
 const month = getMonth(Date.now()) + 1;
+const year = getYear(Date.now());
 
 describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
@@ -20,16 +21,16 @@ describe('ListProviderMonthAvailability', () => {
 
     hours.map(async hour => {
       await fakeAppointmentsRepository.create({
-        provider_id: 'user',
+        provider_id: 'provider',
         user_id: 'user',
-        date: new Date(2020, month, 20, hour - 3, 0, 0),
+        date: new Date(year, month, 20, hour - 3, 0, 0),
       });
     });
 
     const availability = await listProviderMonthAvailability.execute({
-      provider_id: 'user',
-      year: 2020,
-      month: 5,
+      provider_id: 'provider',
+      year,
+      month,
     });
 
     const results = [
