@@ -1,8 +1,11 @@
+import { getMonth } from 'date-fns';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import ListProviderMonthAvailabilityService from './ListProviderMonthAvailabilityService';
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let listProviderMonthAvailability: ListProviderMonthAvailabilityService;
+
+const month = getMonth(Date.now()) + 1;
 
 describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
@@ -19,7 +22,7 @@ describe('ListProviderMonthAvailability', () => {
       await fakeAppointmentsRepository.create({
         provider_id: 'user',
         user_id: 'user',
-        date: new Date(2020, 4, 20, hour - 3, 0, 0),
+        date: new Date(2020, month, 20, hour - 3, 0, 0),
       });
     });
 
