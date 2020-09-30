@@ -1,4 +1,4 @@
-import { getRepository, Raw } from 'typeorm';
+import { getRepository, Raw, Repository } from 'typeorm';
 
 import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentsDTO';
 import IFindAllInMothFromProviderDTO from '@modules/appointments/dtos/IFindAllInMothFromProviderDTO';
@@ -7,7 +7,7 @@ import Appointment from '../entities/Appointment';
 import { IAppointmentsRepository } from '../../../repositories/IAppointmentsRepository';
 
 class AppointmentsRepository implements IAppointmentsRepository {
-  private ormRepository = getRepository(Appointment);
+  private ormRepository: Repository<Appointment>;
 
   constructor() {
     this.ormRepository = getRepository(Appointment);

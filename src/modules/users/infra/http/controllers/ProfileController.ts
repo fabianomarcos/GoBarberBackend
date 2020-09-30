@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import UpdateProfileService from '@modules/users/services/UpdateProfileService';
 import ShowProfileService from '@modules/users/services/ShowProfileService';
-import UserMap from '@modules/appointments/automapper/UserMap';
+import UserMap from '@modules/users/automapper/UserMap';
 
 export default class ProfileController {
   public async show(request: Request, response: Response): Promise<Response> {

@@ -1,10 +1,11 @@
-import { getMonth } from 'date-fns';
 import AppError from '@shared/errors/AppError';
+import { getMonth } from 'date-fns';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import CreateAppointmentService from './CreateAppointmentService';
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let createAppointment: CreateAppointmentService;
+
 const month = getMonth(Date.now()) + 1;
 
 beforeEach(() => {

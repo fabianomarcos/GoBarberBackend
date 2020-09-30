@@ -1,4 +1,4 @@
-import UserMap from '@modules/appointments/automapper/UserMap';
+import UserMap from '@modules/users/automapper/UserMap';
 import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
