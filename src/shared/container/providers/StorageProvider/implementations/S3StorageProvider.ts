@@ -33,16 +33,13 @@ class S3StorageProvider implements IStorageProvider {
   }
 
   public async deleteFile(file: string): Promise<void> {
-    const filePath = path.resolve(uploadConfig.uploadsFolder, file);
-
-    try {
-      await fs.promises.stat(filePath);
-    } catch {
-      return;
-    }
-
-    await fs.promises.unlink(filePath);
+    await this.client
+      .deleteObject({
+        Bucket: 'app-gobarber',
+        Key: file,
+      })
+      .promise();
   }
 }
 
-export default S3StorageProvider;
+export default S3StorageProvider; // tempo 22:19

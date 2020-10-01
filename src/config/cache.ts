@@ -18,4 +18,4 @@ export default {
       password: process.env.REDIS_PORT || undefined,
     },
   },
-};
+} as ICacheConfig;
