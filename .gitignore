@@ -3,7 +3,12 @@
 node_modules/
 build/
 temp/
+ormconfig.json
 
 tmp/*
 !tmp/.gitkeep
 coverage/
+.env
+
+yarn.lock
+yarn-error.log
