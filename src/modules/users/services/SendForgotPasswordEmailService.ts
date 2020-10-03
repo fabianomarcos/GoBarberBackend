@@ -26,8 +26,6 @@ class SendForgotPasswordEmailService {
   public async execute({ email }: IRequest): Promise<void> {
     const user = await this.usersRepository.findByEmail('teste@gmail.com');
 
-    console.log('send forgot', user, email); // está retornando undefined, tem de arrumar
-
     if (!user) {
       throw new AppError('Usuário inexistente.');
     }

@@ -1,4 +1,5 @@
 import FakeNotificationsRepository from '@modules/notifications/respositories/fakes/FakeNotificationsRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 import { getMonth } from 'date-fns';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
@@ -7,14 +8,19 @@ import CreateAppointmentService from './CreateAppointmentService';
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let fakeNotificationRepository: FakeNotificationsRepository;
 let createAppointment: CreateAppointmentService;
+let fakeCacheProvider: FakeCacheProvider;
 
 const month = getMonth(Date.now()) + 1;
 
 beforeEach(() => {
   fakeAppointmentsRepository = new FakeAppointmentsRepository();
+  fakeNotificationRepository = new FakeNotificationsRepository();
+  fakeCacheProvider = new FakeCacheProvider();
+
   createAppointment = new CreateAppointmentService(
     fakeAppointmentsRepository,
     fakeNotificationRepository,
+    fakeCacheProvider,
   );
 });
 
