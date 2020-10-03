@@ -3,7 +3,6 @@ import aws, { S3 } from 'aws-sdk';
 import path from 'path';
 import uploadConfig from '@config/upload';
 import mime from 'mime';
-import AppError from '@shared/errors/AppError';
 import IStorageProvider from '../models/IStorageProvider';
 
 class S3StorageProvider implements IStorageProvider {
@@ -21,7 +20,7 @@ class S3StorageProvider implements IStorageProvider {
     const ContentType = mime.getType(originalPath);
 
     if (!ContentType) {
-      throw new AppError('Arquivo não encontrado.');
+      throw new Error('Arquivo não encontrado.');
     }
 
     const fileContent = await fs.promises.readFile(originalPath);
