@@ -1,4 +1,4 @@
-import FakeNotificationsRepository from '@modules/notifications/respositories/fakes/FakeNotificationsRepository';
+import FakeNotificationsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 import { getMonth } from 'date-fns';
