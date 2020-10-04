@@ -5,7 +5,7 @@ import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import IFindAllProvidersDTO from '@modules/users/dtos/IFindAllProvidersDTO';
 import User from '../entities/User';
 
-class UserRepository implements IUsersRepository {
+class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
 
   constructor() {
@@ -64,4 +64,4 @@ class UserRepository implements IUsersRepository {
   }
 }
 
-export default UserRepository;
+export default UsersRepository;

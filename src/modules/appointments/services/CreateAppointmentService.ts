@@ -1,4 +1,4 @@
-import INotificationsRepository from '@modules/notifications/respositories/INotificationsRepository';
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import { startOfHour, isBefore, getHours, format } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
