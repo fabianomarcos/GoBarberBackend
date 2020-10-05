@@ -30,7 +30,7 @@ describe('CreateAppointment', () => {
       return new Date(2020, month, 10, 12).getTime();
     });
 
-    const appointment = await createAppointment.execute({
+    const appointment = await fakeAppointmentsRepository.create({
       date: new Date(2020, month, 10, 13),
       provider_id: 'provider-id',
       user_id: 'user-id',
@@ -48,6 +48,18 @@ describe('CreateAppointment', () => {
       provider_id: 'provider-id',
       user_id: 'user-id',
     });
+
+    await expect(
+      createAppointment.execute({
+        date: appointmentDate,
+        provider_id: 'provider-id',
+        user_id: 'user-id',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should be able to return error when do not exiting appointment_id', async () => {
+    const appointmentDate = new Date(2020, month, 25, 10);
 
     await expect(
       createAppointment.execute({

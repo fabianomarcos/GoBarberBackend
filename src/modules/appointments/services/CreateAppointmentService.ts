@@ -40,6 +40,11 @@ class CreateAppointmentService {
       );
     }
 
+    const provider = await this.appointmentsRepository.findById(provider_id);
+    if (!provider) {
+      throw new AppError('Profissional inexistente.');
+    }
+
     if (user_id === provider_id) {
       throw new AppError('Você não pode agendar com você mesmo');
     }
