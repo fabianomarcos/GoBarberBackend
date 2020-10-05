@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import nodemailer, { Transporter } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
