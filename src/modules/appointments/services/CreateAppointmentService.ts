@@ -20,8 +20,8 @@ class CreateAppointmentService {
     @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
 
-    @inject('NotificationRepository')
-    private notificationRepository: INotificationsRepository,
+    @inject('NotificationsRepository')
+    private notificationsRepository: INotificationsRepository,
 
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
@@ -54,6 +54,7 @@ class CreateAppointmentService {
     }
     const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
       appointmentDate,
+      provider_id,
     );
 
     if (findAppointmentInSameDate) {
@@ -71,7 +72,7 @@ class CreateAppointmentService {
       "dd/MM/yyyy 'às' HH:mm' Horas'",
     );
 
-    await this.notificationRepository.create({
+    await this.notificationsRepository.create({
       recipient_id: provider_id,
       content: `Novo agendamento para o dia ${dateFormatted}`,
     });
