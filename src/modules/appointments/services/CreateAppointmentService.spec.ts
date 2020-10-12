@@ -58,18 +58,6 @@ describe('CreateAppointment', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should be able to return error when do not exiting appointment_id', async () => {
-    const appointmentDate = new Date(2020, nextMonth, 25, 10);
-
-    await expect(
-      createAppointment.execute({
-        date: appointmentDate,
-        provider_id: '62332671-8a73-4d21-9148-8514e4ce672b',
-        user_id: 'user-id',
-      }),
-    ).rejects.toBeInstanceOf(AppError);
-  });
-
   it('should not be able to create an appointment on a past date', async () => {
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       return new Date(2020, nextMonth, 10, 12).getTime();
@@ -85,27 +73,19 @@ describe('CreateAppointment', () => {
   });
 
   it('should not be able to create an appointment with same user provider', async () => {
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
-      return new Date(2020, nextMonth, 10, 12).getTime();
-    });
-
     await expect(
       createAppointment.execute({
         date: new Date(2020, nextMonth, 10, 11),
-        user_id: 'user-id',
+        user_id: 'provider-id',
         provider_id: 'provider-id',
       }),
     );
   });
 
   it('should not be able to create an appointment before 8am or after 5pm', async () => {
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
-      return new Date(2020, nextMonth, 10, 12).getTime();
-    });
-
     await expect(
       createAppointment.execute({
-        date: new Date(2020, nextMonth, 10, 18),
+        date: new Date(2020, nextMonth, 10, 18, 0, 0),
         user_id: 'user-id',
         provider_id: 'provider-id',
       }),
@@ -113,7 +93,7 @@ describe('CreateAppointment', () => {
 
     await expect(
       createAppointment.execute({
-        date: new Date(2020, nextMonth, 10, 9),
+        date: new Date(2020, nextMonth, 10, 7, 0, 0),
         user_id: 'user-id',
         provider_id: 'provider-id',
       }),
